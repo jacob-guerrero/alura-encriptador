@@ -8,6 +8,14 @@ html {
     -moz-box-sizing: inherit;
     box-sizing: inherit;
 }
+:root {
+    --dark-blue: #0A3871;
+    --gray-bg: #E5E5E5;
+    --light-gray: #D8DFE8;
+    --text-gray: #495057;
+    --side-bg: whitesmoke;
+    --text-white: white;
+}
 
 html, body {
     height: 100dvh;
@@ -17,6 +25,7 @@ html, body {
     height: 100%;
     width: 100%;
     padding: 2.5rem;
+    background-color: var(--gray-bg);
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr;
@@ -52,14 +61,21 @@ html, body {
     grid-row: 1;
 }
 .input-container input {
+    background-color: var(--gray-bg);
     font-size: 1.5rem;
     border: 0;
+}
+.input-container input::placeholder {
+    color: var(--dark-blue);
 }
 .info-container {
     grid-column: 1;
     grid-row: 2;
     display: flex;
     gap: 0.5rem;
+}
+.info-text {
+    color: var(--text-gray);
 }
 .button-container {
     grid-column: 1;
@@ -71,6 +87,14 @@ html, body {
 }
 .btn {
     border-radius: 24px;
+    border: 1px solid var(--dark-blue);
+}
+.btn.encriptar {
+    background-color: var(--dark-blue);
+    color: var(--text-white);
+}
+.btn.desencriptar {
+    background-color: var(--light-gray);
 }
 
 .side-content {
@@ -78,9 +102,9 @@ html, body {
     flex-direction: column;
     justify-content: center;
     gap: 1.5rem;
+    background-color: var(--side-bg);
     padding: 1.5rem;
     border-radius: 32px;
-    background-color: #eee;
 }
 .side-content img {
     width: clamp(100px, 100%, 300px);
