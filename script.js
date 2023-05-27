@@ -8,20 +8,11 @@ const encryptDecrypt  = (() => {
         'u' : 'ufat'
     }
 
-    // Activate Btns:
-    const btnEncrypt = document.querySelector('.encriptar');
-    const btnDecrypt = document.querySelector('.desencriptar');
-    const text = document.querySelector('#cod-text');
-    btnEncrypt.addEventListener('click', () => {
-        encrypt(text.value);
-    })
-    btnDecrypt.addEventListener('click', () => {
-        decrypt(text.value);
-    })
-    
+    // Keys and Values from dict:
     const keys = Object.keys(aluraDictionary);
     const values = Object.values(aluraDictionary);
 
+    // Encrypt and Decrypt Functions:
     const encrypt = (text) => {
         const textCipher = text.toLowerCase().split('').map((symbol) => {
             const index = keys.indexOf(symbol);
@@ -50,3 +41,17 @@ const encryptDecrypt  = (() => {
     
     return {encrypt, decrypt}
 })();
+
+const activateBtns = () => {
+    const btnEncrypt = document.querySelector('.encriptar');
+    const btnDecrypt = document.querySelector('.desencriptar');
+    const text = document.querySelector('#cod-text');
+
+    btnEncrypt.addEventListener('click', () => {
+        encryptDecrypt.encrypt(text.value);
+    })
+    btnDecrypt.addEventListener('click', () => {
+        encryptDecrypt.decrypt(text.value);
+    })
+}
+activateBtns();
