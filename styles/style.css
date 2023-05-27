@@ -107,7 +107,7 @@ html, body {
     align-items: center;
     gap: 1.5rem;
     background-color: var(--side-bg);
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     border-radius: 32px;
 }
 .side-content img {
@@ -123,4 +123,15 @@ html, body {
 .side-title {
     font-size: 1.5rem;
     font-weight: 700;
+}
+
+.side-content.active {
+    justify-content: space-between;
+}
+.side-content textarea {
+    width: 100%;
+    background-color: var(--side-bg);
+    color: var(--dark-blue);
+    font-size: 1.5rem;
+    border: 0;
 }
