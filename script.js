@@ -82,14 +82,25 @@ const createSideElements = (text) => {
 
     const copyBtn = document.createElement('button');
     copyBtn.textContent = "Copiar";
-    copyBtn.classList.add("btn");
+    copyBtn.classList.add("btn", "copiar");
+    copyBtn.onclick = copyText;
 
     const textarea = document.createElement('textarea');
     textarea.textContent = text;
     textarea.name = "side-cod-text";
     textarea.id = "side-cod-text";
     textarea.cols = "20";
-    textarea.rows = "25";
+    textarea.rows = "15";
 
     sideContainer.append(textarea, copyBtn)
+}
+
+const copyText = () => {
+    const copiedText = document.getElementById("side-cod-text");
+
+    // Select the text field
+    copiedText.select();
+    copiedText.setSelectionRange(0, 99999);
+
+    navigator.clipboard.writeText(copiedText.value);
 }
