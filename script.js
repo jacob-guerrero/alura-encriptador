@@ -50,12 +50,14 @@ const activateBtns = () => {
     const text = document.querySelector('#cod-text');
 
     btnEncrypt.addEventListener('click', () => {
-        encryptDecrypt.encrypt(text.value);
+        const encryptedText = encryptDecrypt.encrypt(text.value);
         hideSideContent();
+        createSideElements(encryptedText);
     })
     btnDecrypt.addEventListener('click', () => {
-        encryptDecrypt.decrypt(text.value);
+        const decryptedText = encryptDecrypt.decrypt(text.value);
         hideSideContent();
+        createSideElements(decryptedText);
     })
 }
 activateBtns();
@@ -72,4 +74,22 @@ const showSideContent = () => {
     const sideText = document.querySelector(".side-text-container");
     sideImg.style.display = "inline-block";
     sideText.style.display = "flex";
+}
+
+const createSideElements = (text) => {
+    const sideContainer = document.querySelector(".side-content");
+    sideContainer.classList.add("active");
+
+    const copyBtn = document.createElement('button');
+    copyBtn.textContent = "Copiar";
+    copyBtn.classList.add("btn");
+
+    const textarea = document.createElement('textarea');
+    textarea.textContent = text;
+    textarea.name = "side-cod-text";
+    textarea.id = "side-cod-text";
+    textarea.cols = "20";
+    textarea.rows = "25";
+
+    sideContainer.append(textarea, copyBtn)
 }
