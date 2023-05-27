@@ -17,7 +17,22 @@ const encrypt = () => {
     console.log(textCipher);
 }
 const decrypt = () => {
+    const text = document.querySelector('#cod-text');
+    const keys = Object.keys(aluraDictionary);
+    const values = Object.values(aluraDictionary);
+    console.log(text.value);
 
+    const reg = /(ai|enter|imes|ober|ufat)|(\w|\s)/;
+    const textDecipher = text.value.toLowerCase().split(reg).map((symbol) => {
+        const index = values.indexOf(symbol);
+        if(index !== -1) {
+            return keys[index];
+        } else {
+            return symbol;
+        }
+    }).join('');
+
+    console.log(textDecipher);
 }
 
 const aluraDictionary = {
