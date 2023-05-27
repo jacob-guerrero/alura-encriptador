@@ -1,57 +1,52 @@
+const encryptDecrypt  = (() => {
+    // Dictionaries:
+    const aluraDictionary = {
+        'a' : 'ai',
+        'e' : 'enter',
+        'i' : 'imes',
+        'o' : 'ober',
+        'u' : 'ufat'
+    }
 
-const encrypt = () => {
-    const text = document.querySelector('#cod-text');
-    const keys = Object.keys(aluraDictionary);
-    const values = Object.values(aluraDictionary);
-    console.log(text.value);
-
-    const textCipher = text.value.toLowerCase().split('').map((symbol) => {
-        const index = keys.indexOf(symbol);
-        if(index !== -1) {
-            return values[index];
-        } else {
-            return symbol;
-        }
-    }).join('');
-
-    console.log(textCipher);
-}
-const decrypt = () => {
-    const text = document.querySelector('#cod-text');
-    const keys = Object.keys(aluraDictionary);
-    const values = Object.values(aluraDictionary);
-    console.log(text.value);
-
-    const reg = /(ai|enter|imes|ober|ufat)|(\w|\s)/;
-    const textDecipher = text.value.toLowerCase().split(reg).map((symbol) => {
-        const index = values.indexOf(symbol);
-        if(index !== -1) {
-            return keys[index];
-        } else {
-            return symbol;
-        }
-    }).join('');
-
-    console.log(textDecipher);
-}
-
-const aluraDictionary = {
-    'a' : 'ai',
-    'e' : 'enter',
-    'i' : 'imes',
-    'o' : 'ober',
-    'u' : 'ufat'
-}
-
-const activateBtn = () => {
+    // Activate Btns:
     const btnEncrypt = document.querySelector('.encriptar');
-    btnEncrypt.addEventListener('click', () => {
-        encrypt();
-    })
     const btnDecrypt = document.querySelector('.desencriptar');
-    btnDecrypt.addEventListener('click', () => {
-        decrypt();
+    const text = document.querySelector('#cod-text');
+    btnEncrypt.addEventListener('click', () => {
+        encrypt(text.value);
     })
-}
+    btnDecrypt.addEventListener('click', () => {
+        decrypt(text.value);
+    })
+    
+    const keys = Object.keys(aluraDictionary);
+    const values = Object.values(aluraDictionary);
 
-activateBtn();
+    const encrypt = (text) => {
+        const textCipher = text.toLowerCase().split('').map((symbol) => {
+            const index = keys.indexOf(symbol);
+            if(index !== -1) {
+                return values[index];
+            } else {
+                return symbol;
+            }
+        }).join('');
+    
+        console.log(textCipher);
+    }
+    const decrypt = (text) => {
+        const reg = /(ai|enter|imes|ober|ufat)|(\w|\s)/;
+        const textDecipher = text.toLowerCase().split(reg).map((symbol) => {
+            const index = values.indexOf(symbol);
+            if(index !== -1) {
+                return keys[index];
+            } else {
+                return symbol;
+            }
+        }).join('');
+    
+        console.log(textDecipher);
+    }
+    
+    return {encrypt, decrypt}
+})();
