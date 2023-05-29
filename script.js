@@ -49,6 +49,7 @@ const activateBtns = () => {
     const btnDecrypt = document.querySelector('.desencriptar');
     const text = document.querySelector('#cod-text');
 
+    // Encrypt Button:
     btnEncrypt.addEventListener('click', () => {
         if(text.value !== "") {
             const encryptedText = encryptDecrypt.encrypt(text.value);
@@ -59,6 +60,7 @@ const activateBtns = () => {
         }
     })
 
+    // Decrypt Button:
     btnDecrypt.addEventListener('click', () => {
         if(text.value !== "") {
             const decryptedText = encryptDecrypt.decrypt(text.value);
