@@ -55,15 +55,18 @@ const activateBtns = () => {
             hideSideContent();
             createSideElements(encryptedText);
         } else {
-            console.log("vacio xd")
             showSideContent();
         }
     })
 
     btnDecrypt.addEventListener('click', () => {
-        const decryptedText = encryptDecrypt.decrypt(text.value);
-        hideSideContent();
-        createSideElements(decryptedText);
+        if(text.value !== "") {
+            const decryptedText = encryptDecrypt.decrypt(text.value);
+            hideSideContent();
+            createSideElements(decryptedText);
+        } else {
+            showSideContent();
+        }
     })
 }
 activateBtns();
