@@ -50,10 +50,16 @@ const activateBtns = () => {
     const text = document.querySelector('#cod-text');
 
     btnEncrypt.addEventListener('click', () => {
-        const encryptedText = encryptDecrypt.encrypt(text.value);
-        hideSideContent();
-        createSideElements(encryptedText);
+        if(text.value !== "") {
+            const encryptedText = encryptDecrypt.encrypt(text.value);
+            hideSideContent();
+            createSideElements(encryptedText);
+        } else {
+            console.log("vacio xd")
+            showSideContent();
+        }
     })
+
     btnDecrypt.addEventListener('click', () => {
         const decryptedText = encryptDecrypt.decrypt(text.value);
         hideSideContent();
@@ -67,6 +73,13 @@ const hideSideContent = () => {
     const sideText = document.querySelector(".side-text-container");
     sideImg.style.display = "none";
     sideText.style.display = "none";
+
+    if (document.querySelector("#side-cod-text")) {
+        const sideEncrypt = document.querySelector("#side-cod-text");
+        const copyBtn = document.querySelector(".copiar");
+        sideEncrypt.style.display = "inline-block";
+        copyBtn.style.display = "inline-block";
+    }
 }
 
 const showSideContent = () => {
@@ -74,25 +87,42 @@ const showSideContent = () => {
     const sideText = document.querySelector(".side-text-container");
     sideImg.style.display = "inline-block";
     sideText.style.display = "flex";
+    
+    if (document.querySelector("#side-cod-text")) {
+        const sideContainer = document.querySelector(".side-content");
+        sideContainer.classList.remove("active");
+        const sideEncrypt = document.querySelector("#side-cod-text");
+        const copyBtn = document.querySelector(".copiar");
+        sideEncrypt.style.display = "none";
+        copyBtn.style.display = "none";
+    }
 }
 
 const createSideElements = (text) => {
     const sideContainer = document.querySelector(".side-content");
-    sideContainer.classList.add("active");
 
-    const copyBtn = document.createElement('button');
-    copyBtn.textContent = "Copiar";
-    copyBtn.classList.add("btn", "copiar");
-    copyBtn.onclick = copyText;
+    if(!document.querySelector('#side-cod-text')) {
+        sideContainer.classList.add("active");
 
-    const textarea = document.createElement('textarea');
-    textarea.textContent = text;
-    textarea.name = "side-cod-text";
-    textarea.id = "side-cod-text";
-    textarea.cols = "20";
-    textarea.rows = "15";
+        const copyBtn = document.createElement('button');
+        copyBtn.textContent = "Copiar";
+        copyBtn.classList.add("btn", "copiar");
+        copyBtn.onclick = copyText;
 
-    sideContainer.append(textarea, copyBtn)
+        const textarea = document.createElement('textarea');
+        textarea.name = "side-cod-text";
+        textarea.id = "side-cod-text";
+        textarea.cols = "20";
+        textarea.rows = "15";
+
+        sideContainer.append(textarea, copyBtn);
+    }
+    
+    if(document.querySelector('#side-cod-text')) {
+        sideContainer.classList.add("active");
+        const textarea = document.querySelector('#side-cod-text');
+        textarea.textContent = text;
+    }
 }
 
 const copyText = () => {
