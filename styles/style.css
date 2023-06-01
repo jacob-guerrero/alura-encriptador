@@ -118,6 +118,7 @@ body {
     background-color: var(--side-bg);
     padding: 2rem 1.5rem;
     border-radius: 32px;
+    box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.5);
 }
 .side-content img {
     width: clamp(100px, 100%, 300px);
@@ -152,12 +153,16 @@ body {
 
 /* Hover */
 .btn.encriptar:hover, .btn.desencriptar:hover {
-    transform: scale(1.1);
+    transform: scale(1.04);
     box-shadow: 0px 2px 6px var(--blue-shade);
 }
 .btn.copiar:hover {
     background-color: var(--blue-shade);
+    box-shadow: 0px 2px 6px var(--text-gray);
     color: var(--text-white);
+}
+.btn.encriptar:active, .btn.desencriptar:active, .btn.copiar:active {
+    transform: translateY(2px);
 }
 
 @media (max-width: 800px) {
